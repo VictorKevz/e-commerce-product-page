@@ -1,0 +1,1 @@
+![alt text](public/design/desktop-preview.jpg)
