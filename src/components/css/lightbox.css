@@ -1,16 +1,4 @@
-:root {
-  /* Primary */
-  --primary-orange: hsl(26, 100%, 55%);
-  --primary-pale-orange: hsl(25, 100%, 94%);
 
-  /* Neutral */
-  --neutral-very-dark-blue: hsl(220, 13%, 13%);
-  --neutral-dark-grayish-blue: hsl(219, 9%, 45%);
-  --neutral-grayish-blue: hsl(220, 14%, 75%);
-  --neutral-light-grayish-blue: hsl(223, 64%, 98%);
-  --neutral-white: hsl(0, 0%, 100%);
-  --neutral-black-75-opacity: hsla(0, 0%, 0%, 0.75);
-}
 .lightbox-wrapper {
   display: flex;
   align-items: center;
@@ -38,6 +26,7 @@
 }
 .image-wrapper {
   position: relative;
+  width: 100%;
 }
 .controls {
   position: absolute;

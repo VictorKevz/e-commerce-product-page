@@ -19,7 +19,6 @@
   margin: 0;
   padding: 0;
   font-family: "Kumbh Sans", sans-serif;
-  transition: all 0.3s ease-in;
 }
 html {
   font-size: 10px;
@@ -38,6 +37,8 @@ p,a,li {
 a,li{
   text-decoration: none;
   list-style: none;
+    transition: all 0.3s ease-in;
+
 }
 img,button,a,li{
   cursor: pointer;

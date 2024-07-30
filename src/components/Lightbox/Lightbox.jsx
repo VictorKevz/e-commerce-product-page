@@ -13,10 +13,23 @@ function Lightbox({ onClose }) {
 
   const updateID = (currentID) => setID(currentID);
 
+  const nextSlide = ()=>{
+    setID((prevIndex)=>(prevIndex + 1) % productData.length)
+  }
+  const prevSlide = ()=>{
+    setID((prevIndex) =>
+        prevIndex === 0 ? productData.length - 1 : prevIndex - 1
+      );
+  }
   const imageVariants = {
-    hidden: { opacity: 10, x: 0 },
+    hidden: { opacity: .8, x: 0 },
     visible: { opacity: 1, x: 0 },
-    exit: { opacity: 10, x: 100 },
+    exit: { opacity: .8, x: 0 },
+  };
+
+  const thumbnailVariants = {
+    hidden: { y: 50, x: 0 },
+    visible: { y: 0, x: 0 },
   };
   return (
     <div className="lightbox-wrapper">
@@ -34,32 +47,43 @@ function Lightbox({ onClose }) {
               className="image-wrapper"
               variants={imageVariants}
               transition={{
-                duration: 0.5,
+                duration: 0.3,
                 ease: "easeInOut",
               }}
             >
               <img src={mainIMG} alt="" className="product-img" />
-              <button className="controls prev">
+              <button className="controls prev" onClick={prevSlide}>
                 <img src={iconPrev} alt="" className="prev-icon" />
               </button>
-              <button className="controls next">
+              <button className="controls next" onClick={nextSlide}>
                 <img src={iconNext} alt="" className="next-icon" />
               </button>
             </motion.div>
           </AnimatePresence>
-          <div className="thumbnails-container">
-            {productData.map((link) => (
-              <div key={link.id} onClick={() => updateID(link.id)}>
-                <img
-                  src={link.thumbnail}
-                  alt=""
-                  className={`thumbnail-img ${
-                    link.id === currentID && "active"
-                  }`}
-                />
-              </div>
-            ))}
-          </div>
+          <AnimatePresence mode="wait">
+            <motion.div
+              className="thumbnails-container"
+              initial="hidden"
+              animate="visible"
+              variants={thumbnailVariants}
+              transition={{
+                duration: 0.5,
+                ease: "easeInOut",
+              }}
+            >
+              {productData.map((link) => (
+                <div onClick={() => updateID(link.id)} key={link.id}>
+                  <img
+                    src={link.thumbnail}
+                    alt=""
+                    className={`thumbnail-img ${
+                      link.id === currentID && "active"
+                    }`}
+                  />
+                </div>
+              ))}
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
     </div>
